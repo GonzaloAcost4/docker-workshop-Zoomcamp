@@ -1,0 +1,26 @@
+# Docker volumes and data
+ny_taxi_postgres_data/
+
+# Python environment
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Output files
+*.parquet
+output_*.parquet
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.env.local
