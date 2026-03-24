@@ -182,6 +182,63 @@ Cuando pida contraseña, ingresá `root`.
 
 ---
 
+## Cargar `taxi_zone_lookup.csv` en PostgreSQL/pgAdmin
+
+El archivo debe estar en:
+
+```bash
+pipeline/data/taxi_zone_lookup.csv
+```
+
+El `docker-compose.yaml` ya monta esa carpeta como `/data` dentro de los contenedores.
+
+### 1. Reiniciar servicios para aplicar el volumen
+
+```bash
+docker compose down
+docker compose up -d
+```
+
+### 2. Cargar el CSV desde pgAdmin (Query Tool)
+
+Abrí pgAdmin (`http://localhost:8085`), conectate al server y ejecutá el SQL de:
+
+```sql
+sql/load_taxi_zone_lookup.sql
+```
+
+Si preferís copiar/pegar, ejecutá:
+
+```sql
+CREATE TABLE IF NOT EXISTS taxi_zone_lookup (
+  locationid INTEGER PRIMARY KEY,
+  borough TEXT,
+  zone TEXT,
+  service_zone TEXT
+);
+
+TRUNCATE TABLE taxi_zone_lookup;
+
+COPY taxi_zone_lookup (locationid, borough, zone, service_zone)
+FROM '/data/taxi_zone_lookup.csv'
+WITH (FORMAT csv, HEADER true);
+```
+
+### 3. Verificar carga
+
+```sql
+SELECT COUNT(*) FROM taxi_zone_lookup;
+SELECT * FROM taxi_zone_lookup LIMIT 10;
+```
+
+### Opción por terminal (sin pgAdmin)
+
+```bash
+docker compose exec -T pgdatabase psql -U root -d ny_taxi < sql/load_taxi_zone_lookup.sql
+```
+
+---
+
 ## Limpieza de recursos Docker
 
 ```bash
