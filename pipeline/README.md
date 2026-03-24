@@ -5,14 +5,13 @@ Pipeline de ingesta de datos del dataset NYC Yellow Taxi hacia PostgreSQL, const
 Este README cubre todo lo que está en tu carpeta pipeline/:
 
 Estructura — descripción de cada archivo del proyecto
-
-|Setup — uv sync --dev y docker-compose up con tabla de credenciales
-|3 formas de ingestar — script directo, Docker contenedorizado, y Jupyter
-|Tabla de parámetros — todos los --options del CLI con sus defaults
-|Dataset — de dónde vienen los datos y cómo se forma la URL
-|Dependencias — qué hace cada paquete
-|pgcli — cómo conectarse desde terminal
-|Limpieza — comandos Docker con advertencia sobre prune
+Setup — uv sync --dev y docker-compose up con tabla de credenciales
+3 formas de ingestar — script directo, Docker contenedorizado, y Jupyter
+Tabla de parámetros — todos los --options del CLI con sus defaults
+Dataset — de dónde vienen los datos y cómo se forma la URL
+Dependencias — qué hace cada paquete
+pgcli — cómo conectarse desde terminal
+Limpieza — comandos Docker con advertencia sobre prune
 
 ---
 
